@@ -12,9 +12,12 @@ from telegram.ext import Application, CommandHandler, ContextTypes, Conversation
 from telegram.constants import ChatType
 
 # Configuration
-BOT_TOKEN = "8762735192:AAFpaA7ydn8yFo5tOpZFCLcDucb95BF-UzA"
-RTMP_SERVER = "rtmps://dc4-1.rtmp.t.me/s/"
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8762735192:AAFpaA7ydn8yFo5tOpZFCLcDucb95BF-UzA")
+RTMP_SERVER = os.getenv("RTMP_SERVER", "rtmps://dc4-1.rtmp.t.me/s/")
 DATA_FILE = "streams_data.json"
+
+if not BOT_TOKEN:
+    raise ValueError("BOT_TOKEN environment variable is not set!")
 
 # Conversation states
 WAITING_FOR_STREAM_NAME = 1
